@@ -1,0 +1,102 @@
+{
+    "title": "Daymet Single Pixel Tool",
+    "description": "Welcome to the Daymet Single Pixel Tool API. You can use this API to download daily surface data within the Daymet database in a `csv` or `json` format for a single point. This API allows users to query a single geographic point by latitude and longitude in decimal degrees. A routine is executed that translates the (lon, lat) coordinates into projected Daymet (x,y) Lambert Conformal Coordinates. These coordinates are used to access the Daymet database of daily interpolated surface weather variables. Daily data from the nearest 1 km x 1 km Daymet grid cell are extracted from the database.\n\nIf you would like to learn how to automate the download of multiple locations for the Daymet Single Pixel Tool, click [here](https://github.com/ornldaac/daymet-single-pixel-batch).",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/ornl.gov/daymet/1.0.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://daymet.ornl.gov/single-pixel",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "get_api_data": {
+            "main": "./lib/actions/get_api_data.js",
+            "title": "Download Daymet Data",
+            "description": "Returns a csv or json of the requested data to local machine",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_api_data.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_preview": {
+            "main": "./lib/actions/get_preview.js",
+            "title": "Preview Daymet Data in a web browser",
+            "description": "Returns a table to the browser displaying requested data",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_preview.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_send_saveData": {
+            "main": "./lib/actions/get_send_saveData.js",
+            "title": "Download Daymet Data",
+            "description": "Returns a csv or json of the requested data to local machine",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_send_saveData.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_visualize": {
+            "main": "./lib/actions/get_visualize.js",
+            "title": "Visualize Daymet Data in a web browser",
+            "description": "Returns plots to a web browser of requested data using Plotly",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_visualize.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

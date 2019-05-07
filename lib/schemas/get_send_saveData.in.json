@@ -1,0 +1,43 @@
+{
+    "type": "object",
+    "properties": {
+        "lat": {
+            "required": true,
+            "type": "number",
+            "format": "double"
+        },
+        "lon": {
+            "required": true,
+            "type": "number",
+            "format": "double"
+        },
+        "vars": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "years": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "start": {
+            "type": "string",
+            "format": "date"
+        },
+        "end": {
+            "type": "string",
+            "format": "date"
+        },
+        "format": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "csv",
+                "json"
+            ]
+        }
+    }
+}
